@@ -1,2 +1,2 @@
 # training-coding
-zen-x
+repo for beginners
