@@ -1,2 +1,2 @@
 # training-coding
-repo for beginners
+repo for newbie
