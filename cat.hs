@@ -157,7 +157,9 @@ sum' (x:xs) = x + sum' xs
 
 --
 
-product' x = x
+product' [] = 1
+product' (x:xs) = product' xs * x
+
 
 --
 
