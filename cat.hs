@@ -42,7 +42,9 @@ filter' x = x
 
 --
 
-delete' x = x
+delete' y (x:xs)
+  | y == x = (xs)
+  | y /= x = x : delete' y xs
 
 --
 
@@ -110,7 +112,8 @@ tail' (x:xs) = tail' xs
 
 --
 
-init' x = x
+init' [x] = []
+init' (x:xs) = x: init' xs
 
 --
 
@@ -135,12 +138,13 @@ intercalate' x = x
 --
 
 and' x
-  | x == [] = True
-
+  | x == (True, True) = True
+  | otherwise = False
 --
 
 or' x
-  | x == [] = False
+  | x == (False, False) = False
+  | otherwise = True
 
 --
 
@@ -157,7 +161,7 @@ product' x = x
 
 --
 
-words' x = x
+words' "x:xs" = ["x:xs"]
 
 --
 
