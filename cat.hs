@@ -98,7 +98,9 @@ length' (x:xs) = 1 + length' xs
 
 --
 
-reverse' x = x
+reverse' [] = []
+reverse' [x] = [x]
+reverse' (x:xs) = reverse' xs ++ [x]
 
 --
 
@@ -117,11 +119,15 @@ init' (x:xs) = x: init' xs
 
 --
 
-max' x = x
+max' x y
+  | x >= y = x
+  | x <= y = y
 
 --
 
-min' x = x
+min' x y
+  | x <= y = x
+  | x >= y = y
 
 --
 
@@ -129,7 +135,9 @@ concat' x = x
 
 --
 
-intersperse' x = x
+intersperse' y [] = []
+intersperse' y [x] = [x]
+intersperse' y (x:xs) = x : y : intersperse' y (xs)
 
 --
 
@@ -144,6 +152,7 @@ and' x
 
 or' x
   | x == (False, False) = False
+  | x == (True, False) = False
   | otherwise = True
 
 --
