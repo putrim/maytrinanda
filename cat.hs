@@ -13,15 +13,15 @@ null' x
 
 --
 
-take' 0 _ = []
-take' _ [] = []
+take' x [0] = []
+take' 0 [x] = []
 take' y (x:xs) = x : take' (y-1) xs
 
 --
 
-drop' _ [] = []
-drop' 0 x = x
-drop' y (x:xs) = drop' (y-1) xs
+drop' x [] = []
+drop' 0 [x] = [x]
+drop' y (x:xs) = x : drop' (y-1) xs
 
 --
 
@@ -48,7 +48,10 @@ delete' y (x:xs)
 
 --
 
-deleteAll' x = x
+deleteAll' y [] = []
+deleteAll' y (x:xs)
+  | y == x = deleteAll' y xs
+  | y /= x = x : deleteAll' y xs
 
 --
 
@@ -60,7 +63,8 @@ foldl1' x = x
 
 --
 
-zip' x = x
+zip' [y] [] = []
+zip' [y] (x:xs) = [(y,x)] : zip' [y] xs
 
 --
 
@@ -80,11 +84,17 @@ scanl1' x = x
 
 --
 
-elem' x = x
+elem' y [] = False
+elem' y (x:xs)
+  | y == (x) = True
+  | y /= (x) = elem' y xs
 
 --
 
-notElem' x = x
+notElem' y [] = True
+notElem' y (x:xs)
+  | y == (x) = False
+  | y /= (x) = notElem' y xs
 
 --
 
@@ -208,7 +218,10 @@ any' x = x
 
 --
 
-insert' x = x
+insert' y [] = [y]
+insert' y (x:xs)
+  | y <= x = y : x : xs
+  | y >= x = x : insert' y xs
 
 --
 
