@@ -38,7 +38,10 @@ map' y (x:xs) = y x : map' y xs
 
 --
 
-filter' x = x
+filter' y [] = []
+filter' y (x:xs)
+  | y x == True = [x] ++ filter' y xs
+  | y x == False = filter' y xs
 
 --
 
@@ -63,8 +66,7 @@ foldl1' x = x
 
 --
 
-zip' [y] [] = []
-zip' [y] (x:xs) = [(y,x)] : zip' [y] xs
+zip' x = x
 
 --
 
@@ -151,7 +153,9 @@ intersperse' y (x:xs) = x : y : intersperse' y (xs)
 
 --
 
-intercalate' x = x
+intercalate' (y:xs) [[]] = []
+intercalate' (y:ys) [[z]] = [z]
+intercalate' (y:ys) (x:xs) = x ++ (y:ys) ++ intercalate' (y:ys) xs
 
 --
 
@@ -182,7 +186,7 @@ product' (x:xs) = product' xs * x
 
 --
 
-words' "x:xs" = ["x:xs"]
+words' x = x
 
 --
 
@@ -198,11 +202,17 @@ unwords' x = x
 
 --
 
-takeWhile' x = x
+takeWhile' y [] = []
+takeWhile' y (x:xs)
+  | y x == True = [x] ++ takeWhile' y xs
+  | y x == False = takeWhile' y xs
 
 --
 
-dropWhile' x = x
+dropWhile' y [] = []
+dropWhile' y (x:xs)
+  | y x == True = []
+  | y x == False = [x] ++ dropWhile' y xs
 
 --
 
@@ -210,11 +220,21 @@ concatMap' x = x
 
 --
 
-all' x = x
+all' y [] = True
+all' y (x:xs)
+  | y x >= True = True
+  | y x <= False = False
+  | otherwise = False
 
 --
 
-any' x = x
+any' y [] = False
+any' y (x:xs)
+  | y x >= True = True
+  | y x >= False = False
+  | y x <= True = True
+  | y x >= False = True
+  | y x <= False = True
 
 --
 
