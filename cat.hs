@@ -33,7 +33,6 @@ snd' (x,y) = y
 
 --
 
-map' _ [] = []
 map' y (x:xs) = y x : map' y xs
 
 --
@@ -66,7 +65,10 @@ foldl1' x = x
 
 --
 
-zip' x = x
+zip' [][] = []
+zip' (y:ys)[] = []
+zip' [](x:xs) = []
+zip' (y:ys)(x:xs) = (y,x) :  zip' ys xs
 
 --
 
