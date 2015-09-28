@@ -65,9 +65,8 @@ foldl1' x = x
 
 --
 
-zip' [][] = []
-zip' (y:ys)[] = []
-zip' [](x:xs) = []
+zip' _ [] = []
+zip' [] _ = []
 zip' (y:ys)(x:xs) = (y,x) :  zip' ys xs
 
 --
@@ -173,7 +172,10 @@ or' x
 
 --
 
-zip3' x = x
+zip3' _ _ [] = []
+zip3' _ [] _ = []
+zip3' [] _ _ = []
+zip3' (y:ys)(x:xs)(z:zs) = (y,x,z) :  zip3' ys xs zs
 
 --
 
