@@ -13,15 +13,15 @@ null' x
 
 --
 
+take' 0 xs = []
 take' x [0] = []
-take' 0 [x] = []
 take' y (x:xs) = x : take' (y-1) xs
 
 --
 
 drop' x [] = []
 drop' 0 [x] = [x]
-drop' y (x:xs) = x : drop' (y-1) xs
+drop' y (x:xs) = drop' (y-1) xs
 
 --
 
