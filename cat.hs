@@ -33,6 +33,7 @@ snd' (x,y) = y
 
 --
 
+map' _ [] = []
 map' y (x:xs) = y x : map' y xs
 
 --
@@ -144,7 +145,8 @@ min' x y
 
 --
 
-concat' x = x
+concat' [] = []
+concat' (x:xs) = x ++ concat' xs
 
 --
 
